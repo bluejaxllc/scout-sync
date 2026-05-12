@@ -226,8 +226,8 @@ tr:hover td{background:rgba(124,58,237,0.05)}
 // ============================================================
 var SYNC_PAGE = (location.origin + location.pathname).replace('index.html','') + 'sync.html';
 var API_URL = 'https://scout.bluejax.ai/api/enrich/push';
-var SUPABASE_URL = 'https://yenpjuhgtsthbjaenqmc.supabase.co';
-var SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InllbnBqdWhndHN0aGJqYWVucW1jIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQyMjcxMTAsImV4cCI6MjA4OTgwMzExMH0.ujb_xWipD-qmTivABaCH8kf0zbdq-vmtqPPp2S0dcZk';
+var SUPABASE_URL = 'https://scout.bluejax.ai';  // Redirected from paused Supabase to our own API
+var SUPABASE_KEY = 'not-needed';  // Key not needed for our own API
 
 // ============================================================
 // SHARED INTERCEPTOR CORE (minified — used by all bookmarklets)
@@ -364,7 +364,7 @@ BOOKMARKLETS.S = "javascript:void(function(){" + CORE +
   "var b=new Blob([p],{type:'application/json'});" +
   "navigator.sendBeacon('" + API_URL + "',b);" +
   "var sp=JSON.stringify({payload:p,source:'stealth_v11_auto',created_at:new Date().toISOString()});" +
-  "navigator.sendBeacon('" + SUPABASE_URL + "/rest/v1/scout_inbox?apikey=" + SUPABASE_KEY + "',new Blob([sp],{type:'application/json'}));" +
+  "navigator.sendBeacon('" + SUPABASE_URL + "/api/scout/inbox?_legacy=" + SUPABASE_KEY + "',new Blob([sp],{type:'application/json'}));" +
   "}catch(e){};return window._S.d.length};" +
   UI("\ud83d\udce4 DUMP", "_scoutDump()") +
   "window._scoutDump=function(){if(!window._S.d.length){alert('No data yet. Browse PlanHub first!');return}" +
@@ -392,7 +392,7 @@ BOOKMARKLETS.H = "javascript:void(function(){" + CORE +
   "try{var bk=navigator.sendBeacon('"+API_URL+"',new Blob([json],{type:'application/json'}));" +
   "R.push('C.Beacon: '+(bk?'\u2705 queued':'\u274c rejected'))}catch(e){R.push('C.Beacon: \u274c '+e.message)}" +
   "try{var sb=new Blob([JSON.stringify({payload:json,source:'mega_beacon',created_at:new Date().toISOString()})],{type:'application/json'});" +
-  "var sbOk=navigator.sendBeacon('"+SUPABASE_URL+"/rest/v1/scout_inbox?apikey="+SUPABASE_KEY+"',sb);" +
+  "var sbOk=navigator.sendBeacon('"+SUPABASE_URL+"/api/scout/inbox',sb);" +
   "R.push('D.Beacon>SB: '+(sbOk?'\u2705 queued':'\u274c rejected'))}catch(e){R.push('D.Beacon>SB: \u274c '+e.message)}" +
   "try{new Image().src='"+API_URL.replace('/enrich/push','/pixel')+"?sid=mega'+Date.now()+'&d=test';" +
   "R.push('E.Pixel: \u26a0\ufe0f fired')}catch(e){R.push('E.Pixel: \u274c '+e.message)}" +
