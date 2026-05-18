@@ -222,9 +222,9 @@ tr:hover td{background:rgba(124,58,237,0.05)}
 
 <script>
 // ============================================================
-// SYNC PAGE URL — Update this if deploying to a different URL
+// SYNC PAGE URL
 // ============================================================
-var SYNC_PAGE = (location.origin + location.pathname).replace('index.html','') + 'sync.html';
+var SYNC_PAGE = 'https://bluejaxllc.github.io/planhub-scraper/sync.html';
 var API_URL = 'https://scout.bluejax.ai/api/enrich/push';
 var SUPABASE_URL = 'https://scout.bluejax.ai';  // Redirected from paused Supabase to our own API
 var SUPABASE_KEY = 'not-needed';  // Key not needed for our own API
@@ -241,13 +241,13 @@ var CORE = [
   "window.fetch=function(){var a=arguments,u=typeof a[0]==='string'?a[0]:(a[0]&&a[0].url||''),o=a[1]||{};",
   "if(o.headers){var h=o.headers;if(h.authorization||h.Authorization)window._S.tok=h.authorization||h.Authorization}",
   "return _oF.apply(this,a).then(function(r){",
-  "if(u&&(u.indexOf('ActivityTracker')>-1||u.indexOf('get-filtered')>-1||u.indexOf('get-details')>-1||u.indexOf('/company/')>-1||u.indexOf('projects/search')>-1||u.indexOf('planhub.com/api')>-1)){",
+  "if(u&&(u.indexOf('/api/')>-1||u.indexOf('ActivityTracker')>-1||u.indexOf('/company/')>-1)){",
   "try{var c=r.clone();c.json().then(function(j){window._S.d.push({t:Date.now(),u:u,p:location.href,j:j});window._S.n++;var el=document.getElementById('_sc');if(el)el.textContent=window._S.n}).catch(function(){})}catch(e){}}",
   "return r})};",
   "var _oX=XMLHttpRequest.prototype.open,_oS=XMLHttpRequest.prototype.send;",
   "XMLHttpRequest.prototype.open=function(m,u){this._su=u;return _oX.apply(this,arguments)};",
   "XMLHttpRequest.prototype.send=function(){var x=this;x.addEventListener('load',function(){var u=x._su||'';",
-  "if(u&&(u.indexOf('ActivityTracker')>-1||u.indexOf('get-filtered')>-1||u.indexOf('get-details')>-1||u.indexOf('/company/')>-1||u.indexOf('projects/search')>-1||u.indexOf('planhub.com/api')>-1)){",
+  "if(u&&(u.indexOf('/api/')>-1||u.indexOf('ActivityTracker')>-1||u.indexOf('/company/')>-1)){",
   "try{var j=JSON.parse(x.responseText);window._S.d.push({t:Date.now(),u:u,p:location.href,j:j});window._S.n++;var el=document.getElementById('_sc');if(el)el.textContent=window._S.n}catch(e){}}});",
   "return _oS.apply(this,arguments)};"
 ].join('');
