@@ -269,10 +269,10 @@ BOOKMARKLETS.A = "javascript:void(function(){" + CORE +
   UI("🚀 SYNC", "_scoutPopup()") +
   "window._scoutPopup=function(){if(!window._S.d.length){alert('No data captured yet. Browse PlanHub first!');return}" +
   "try{var json=JSON.stringify({token:window._S.tok,url:location.href,captured:window._S.d});" +
-  "var b64=btoa(unescape(encodeURIComponent(json)));" +
-  "if(b64.length>50000){var chunks=[];for(var i=0;i<b64.length;i+=45000)chunks.push(b64.slice(i,i+45000));" +
-  "var w=window.open('SYNC_PAGE');var c=0;var intv=setInterval(function(){if(c<chunks.length){w.location.hash='chunk='+c+'&total='+chunks.length+'&d='+chunks[c];c++;}else{clearInterval(intv);}},600)}" +
-  "else{window.open('SYNC_PAGE#d='+b64)}" +
+  "var w=window.open('SYNC_PAGE');" +
+  "var l=function(e){if(e.data==='SYNC_READY'){w.postMessage({type:'SCOUT_DATA',payload:json},'*');window.removeEventListener('message',l);}};" +
+  "window.addEventListener('message',l);" +
+  "setTimeout(function(){w.postMessage({type:'SCOUT_DATA',payload:json},'*');},2500);" +
   "document.getElementById('_syncbtn').textContent='✅ SENT'}catch(e){alert('Popup err: '+e.message)}};" +
   "}())".replace(/SYNC_PAGE/g, SYNC_PAGE);
 
@@ -368,13 +368,13 @@ BOOKMARKLETS.S = "javascript:void(function(){" + CORE +
   UI("📥 DUMP", "_scoutDump()") +
   "window._scoutDump=function(){if(!window._S.d.length){alert('No data yet. Browse PlanHub first!');return}" +
   "try{var json=JSON.stringify({token:window._S.tok,url:location.href,captured:window._S.d,source:'stealth_v11_dump'});" +
-  "var b64=btoa(unescape(encodeURIComponent(json)));" +
   "navigator.sendBeacon('" + SUPABASE_URL + "/api/scout/inbox',new Blob([json],{type:'application/json'}));" +
-  "if(b64.length>50000){var ch=[];for(var i=0;i<b64.length;i+=45000)ch.push(b64.slice(i,i+45000));" +
-  "var w=window.open('SYNC_PAGE');var c=0;var intv=setInterval(function(){if(c<ch.length){w.location.hash='chunk='+c+'&total='+ch.length+'&d='+ch[c];c+=1;}else{clearInterval(intv);}},600)}" +
-  "else{window.open('SYNC_PAGE#d='+b64)}" +
+  "var w=window.open('SYNC_PAGE');" +
+  "var l=function(e){if(e.data==='SYNC_READY'){w.postMessage({type:'SCOUT_DATA',payload:json},'*');window.removeEventListener('message',l);}};" +
+  "window.addEventListener('message',l);" +
+  "setTimeout(function(){w.postMessage({type:'SCOUT_DATA',payload:json},'*');},2500);" +
   "document.getElementById('_syncbtn').textContent='✅ SENT '+window._S.d.length;" +
-  "}catch(e){alert('Use Copy/Paste or Save (data was too large for URL payload)')}};" +
+  "}catch(e){alert('Use Copy/Paste or Save (data was too large for URL payload)\\n'+e.message)}};" +
   "}())".replace(/SYNC_PAGE/g, SYNC_PAGE);
 
 // --- H: MEGA (ALL METHODS) ---
